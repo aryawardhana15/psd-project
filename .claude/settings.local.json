@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Path \"d:\\\\psd\\\\project akhir psd\\\\output\" -Force)"
+    ]
+  }
+}

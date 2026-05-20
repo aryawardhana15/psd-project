@@ -1,0 +1,366 @@
+[OK] Semua library berhasil di-import!
+[DATA] Dataset berhasil dimuat!
+   Jumlah baris : 8807
+   Jumlah kolom : 12
+============================================================
+INFO DATASET
+============================================================
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 8807 entries, 0 to 8806
+Data columns (total 12 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   show_id       8807 non-null   object
+ 1   type          8807 non-null   object
+ 2   title         8807 non-null   object
+ 3   director      6173 non-null   object
+ 4   cast          7982 non-null   object
+ 5   country       7976 non-null   object
+ 6   date_added    8797 non-null   object
+ 7   release_year  8807 non-null   int64 
+ 8   rating        8803 non-null   object
+ 9   duration      8804 non-null   object
+ 10  listed_in     8807 non-null   object
+ 11  description   8807 non-null   object
+dtypes: int64(1), object(11)
+memory usage: 825.8+ KB
+
+[LIST] 5 Baris Pertama Dataset:
+
+[CHART] Statistik Deskriptif:
+
+[?] Missing Values per Kolom:
+            Jumlah  Persentase (%)
+director      2634           29.91
+country        831            9.44
+cast           825            9.37
+date_added      10            0.11
+rating           4            0.05
+duration         3            0.03
+
+[CYCLE] Jumlah data duplikat: 0
+Movie: 6,131 | TV Show: 2,676
+[DATA] Statistik Durasi Film:
+   Mean   : 99.6 menit
+   Median : 98.0 menit
+   Min    : 3 menit
+   Max    : 312 menit
+============================================================
+SEBELUM PREPROCESSING
+============================================================
+Shape: (8807, 12)
+
+Missing values:
+director      2634
+cast           825
+country        831
+date_added      10
+rating           4
+duration         3
+dtype: int64
+
+============================================================
+SETELAH HANDLING MISSING VALUES
+============================================================
+Shape: (8790, 12)
+Total missing values: 0
+[OK] Konversi tipe data selesai!
+
+Contoh duration_int: [90, 2, 1]
+Contoh duration_type: ['min' 'Seasons' 'Season']
+[OK] Feature engineering selesai!
+
+Fitur baru yang dibuat:
+  - genre_count       : rata-rata 2.2 genre per konten
+  - has_director      : 6,169 konten punya director
+  - country_main      : 87 negara unik
+  - description_length: rata-rata 143 karakter
+  - title_length      : rata-rata 18 karakter
+[OK] Encoding selesai!
+   Kolom country one-hot: 11
+   Kolom genre one-hot  : 11
+============================================================
+VALIDASI AKHIR DATASET
+============================================================
+Shape final         : (8790, 48)
+Missing values total: 0
+Duplikat            : 0
+
+Kolom dataset final (48 kolom):
+   1. show_id (object)
+   2. type (object)
+   3. title (object)
+   4. director (object)
+   5. cast (object)
+   6. country (object)
+   7. date_added (datetime64[ns])
+   8. release_year (int64)
+   9. rating (object)
+  10. duration (object)
+  11. listed_in (object)
+  12. description (object)
+  13. year_added (int32)
+  14. month_added (int32)
+  15. duration_int (int32)
+  16. duration_type (object)
+  17. genre_count (int64)
+  18. has_director (int32)
+  19. country_main (object)
+  20. description_length (int64)
+  21. title_length (int64)
+  22. genre_main (object)
+  23. type_encoded (int32)
+  24. rating_encoded (int32)
+  25. country_main_grouped (object)
+  26. genre_main_grouped (object)
+  27. country_Canada (bool)
+  28. country_France (bool)
+  29. country_India (bool)
+  30. country_Japan (bool)
+  31. country_Mexico (bool)
+  32. country_Other (bool)
+  33. country_South Korea (bool)
+  34. country_Spain (bool)
+  35. country_United Kingdom (bool)
+  36. country_United States (bool)
+  37. country_Unknown (bool)
+  38. genre_Action & Adventure (bool)
+  39. genre_Children & Family Movies (bool)
+  40. genre_Comedies (bool)
+  41. genre_Crime TV Shows (bool)
+  42. genre_Documentaries (bool)
+  43. genre_Dramas (bool)
+  44. genre_Horror Movies (bool)
+  45. genre_International TV Shows (bool)
+  46. genre_Kids' TV (bool)
+  47. genre_Other (bool)
+  48. genre_Stand-Up Comedy (bool)
+[OK] Data siap untuk classification!
+   Training set : 7,032 sampel
+   Testing set  : 1,758 sampel
+   Jumlah fitur : 29
+   Proporsi target (train):
+     Movie   (1): 4,901 (69.7%)
+     TV Show (0): 2,131 (30.3%)
+
+============================================================
+MODEL: Decision Tree
+============================================================
+
+[DATA] Accuracy: 99.94%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     TV Show       1.00      1.00      1.00       533
+       Movie       1.00      1.00      1.00      1225
+
+    accuracy                           1.00      1758
+   macro avg       1.00      1.00      1.00      1758
+weighted avg       1.00      1.00      1.00      1758
+
+
+============================================================
+MODEL: Random Forest
+============================================================
+
+[DATA] Accuracy: 99.94%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     TV Show       1.00      1.00      1.00       533
+       Movie       1.00      1.00      1.00      1225
+
+    accuracy                           1.00      1758
+   macro avg       1.00      1.00      1.00      1758
+weighted avg       1.00      1.00      1.00      1758
+
+
+============================================================
+MODEL: Logistic Regression
+============================================================
+
+[DATA] Accuracy: 99.94%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     TV Show       1.00      1.00      1.00       533
+       Movie       1.00      1.00      1.00      1225
+
+    accuracy                           1.00      1758
+   macro avg       1.00      1.00      1.00      1758
+weighted avg       1.00      1.00      1.00      1758
+
+[OK] Semua confusion matrix tersimpan di folder output/
+
+[DATA] TABEL PERBANDINGAN MODEL CLASSIFICATION
+=============================================
+              Model Accuracy (%)
+      Decision Tree        99.94
+      Random Forest        99.94
+Logistic Regression        99.94
+
+[TROPHY] Model terbaik: Decision Tree (99.94%)
+[DATA] Top 5 Fitur Terpenting:
+   duration_int: 0.4545
+   has_director: 0.2946
+   genre_International TV Shows: 0.0651
+   genre_Other: 0.0473
+   genre_Crime TV Shows: 0.0281
+[OK] Data clustering siap!
+   Jumlah sampel: 8,790
+   Jumlah fitur : 5
+
+Statistik fitur (setelah scaling):
+       release_year  duration_int  ...  description_length  title_length
+count       8790.00       8790.00  ...             8790.00       8790.00
+mean           0.00         -0.00  ...                0.00          0.00
+std            1.00          1.00  ...                1.00          1.00
+min          -10.11         -1.36  ...               -7.96         -1.57
+25%           -0.13         -1.34  ...               -0.32         -0.73
+50%            0.32          0.37  ...                0.26         -0.26
+75%            0.55          0.71  ...                0.55          0.50
+max            0.77          4.77  ...               10.13          8.12
+
+[8 rows x 5 columns]
+[SEARCH] Menghitung Elbow Method & Silhouette Score...
+   k=2: Inertia=35,770, Silhouette=0.2223
+   k=3: Inertia=29,937, Silhouette=0.2449
+   k=4: Inertia=25,047, Silhouette=0.2695
+   k=5: Inertia=22,288, Silhouette=0.2504
+   k=6: Inertia=19,619, Silhouette=0.2811
+   k=7: Inertia=18,061, Silhouette=0.2722
+   k=8: Inertia=15,993, Silhouette=0.2783
+   k=9: Inertia=15,085, Silhouette=0.2764
+   k=10: Inertia=14,210, Silhouette=0.2743
+
+[TROPHY] K optimal berdasarkan Silhouette Score: k = 6
+[OK] K-Means Clustering selesai (k=6)
+
+Distribusi Cluster:
+   Cluster 0: 1,855 konten (21.1%)
+   Cluster 1: 3,140 konten (35.7%)
+   Cluster 2: 1,048 konten (11.9%)
+   Cluster 3: 1,404 konten (16.0%)
+   Cluster 4: 846 konten (9.6%)
+   Cluster 5: 497 konten (5.7%)
+[DATA] PCA Explained Variance: 50.2%
+[DATA] RATA-RATA FITUR PER CLUSTER
+======================================================================
+         release_year  duration_int  genre_count  description_length  title_length
+cluster                                                                           
+0             2017.07          2.61         2.65              144.71         14.85
+1             2015.25        107.99         2.55              146.61         13.63
+2             2016.37         62.55         1.69              144.34         38.82
+3             2015.98         58.36         1.01              144.66         16.77
+4             2015.01         80.92         2.41              123.56         15.29
+5             1985.54        110.36         2.34              144.79         16.58
+
+[DATA] DISTRIBUSI TIPE KONTEN PER CLUSTER
+==================================================
+type     Movie  TV Show
+cluster                
+0          3.0     97.0
+1        100.0      0.0
+2         79.7     20.3
+3         68.4     31.6
+4         78.6     21.4
+5         94.8      5.2
+
+[DATA] TOP 3 GENRE PER CLUSTER
+============================================================
+
+Cluster 0 (1,855 konten):
+   * International TV Shows: 1175 (63.3%)
+   * TV Dramas: 650 (35.0%)
+   * TV Comedies: 407 (21.9%)
+
+Cluster 1 (3,140 konten):
+   * International Movies: 1950 (62.1%)
+   * Dramas: 1697 (54.0%)
+   * Comedies: 1068 (34.0%)
+
+Cluster 2 (1,048 konten):
+   * Documentaries: 243 (23.2%)
+   * Children & Family Movies: 214 (20.4%)
+   * International Movies: 178 (17.0%)
+
+Cluster 3 (1,404 konten):
+   * Documentaries: 264 (18.8%)
+   * Kids' TV: 177 (12.6%)
+   * Stand-Up Comedy: 167 (11.9%)
+
+Cluster 4 (846 konten):
+   * International Movies: 416 (49.2%)
+   * Dramas: 319 (37.7%)
+   * Comedies: 210 (24.8%)
+
+Cluster 5 (497 konten):
+   * Dramas: 212 (42.7%)
+   * International Movies: 166 (33.4%)
+   * Comedies: 154 (31.0%)
+
+======================================================================
+[SEARCH] INTERPRETASI CLUSTER
+======================================================================
+
+[PIN] Cluster 0 (1,855 konten):
+   Rata-rata tahun rilis : 2017
+   Rata-rata durasi      : 3
+   Persentase Movie      : 3.0%
+   Genre dominan         : International TV Shows
+   Negara dominan        : United States
+   -> Interpretasi: konten baru/modern, berdurasi pendek, didominasi TV Show
+
+[PIN] Cluster 1 (3,140 konten):
+   Rata-rata tahun rilis : 2015
+   Rata-rata durasi      : 108
+   Persentase Movie      : 100.0%
+   Genre dominan         : International Movies
+   Negara dominan        : United States
+   -> Interpretasi: konten era pertengahan, berdurasi panjang, didominasi Movie
+
+[PIN] Cluster 2 (1,048 konten):
+   Rata-rata tahun rilis : 2016
+   Rata-rata durasi      : 63
+   Persentase Movie      : 79.7%
+   Genre dominan         : Documentaries
+   Negara dominan        : United States
+   -> Interpretasi: konten era pertengahan, berdurasi menengah, didominasi Movie
+
+[PIN] Cluster 3 (1,404 konten):
+   Rata-rata tahun rilis : 2016
+   Rata-rata durasi      : 58
+   Persentase Movie      : 68.4%
+   Genre dominan         : Documentaries
+   Negara dominan        : United States
+   -> Interpretasi: konten era pertengahan, berdurasi menengah, didominasi Movie
+
+[PIN] Cluster 4 (846 konten):
+   Rata-rata tahun rilis : 2015
+   Rata-rata durasi      : 81
+   Persentase Movie      : 78.6%
+   Genre dominan         : International Movies
+   Negara dominan        : United States
+   -> Interpretasi: konten era pertengahan, berdurasi menengah, didominasi Movie
+
+[PIN] Cluster 5 (497 konten):
+   Rata-rata tahun rilis : 1986
+   Rata-rata durasi      : 110
+   Persentase Movie      : 94.8%
+   Genre dominan         : Dramas
+   Negara dominan        : United States
+   -> Interpretasi: konten lama/klasik, berdurasi panjang, didominasi Movie
+
+======================================================================
+[NOTE] KESIMPULAN & INSIGHT
+======================================================================
+Traceback (most recent call last):
+  File "D:\psd\project akhir psd\netflix_analysis.py", line 806, in <module>
+    print("""
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-68: character maps to <undefined>
